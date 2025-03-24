@@ -1,0 +1,24 @@
+
+.squareContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.square {
+    width: 50px;
+    height: 50px; 
+    border: 2px solid #ccc; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 24px;
+}
+
+.square.error {
+    border:2px solid red;
+}
+
+.square.correct {
+    border:2px solid green;
+}
