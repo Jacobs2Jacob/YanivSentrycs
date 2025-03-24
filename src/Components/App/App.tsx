@@ -43,7 +43,7 @@ const App: React.FC = () => {
     }, []);
 
     // event emitted
-    const handleKeyPress = async (key: string) => {
+    const handleKeyPress = (key: string) => {
         if (key === 'BACKSPACE') {
             if (input.length > 0) {
                 setInput((prev) => {
@@ -54,7 +54,7 @@ const App: React.FC = () => {
             }
         }
         else if (key === 'ENTER') {
-            await checkWord(input.join(''));
+            checkWord(input.join(''));
         }
         else if (input.length < inputLength) {
             setInput((prev) => {

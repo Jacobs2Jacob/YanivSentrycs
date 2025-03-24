@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import _debounce from 'lodash.debounce';
+import { useState, useCallback } from 'react'; 
+import useDebounce from './useDebounce';
 
 export const useDictionaryCheck = (minWordLength: number) => {
 
@@ -8,8 +8,7 @@ export const useDictionaryCheck = (minWordLength: number) => {
     const [exists, setExists] = useState<boolean | null>(null);
     const [lastChecked, setLastChecked] = useState<{ val: string, exists: boolean }>(null!);
 
-    // use debounce for keypress delay
-    const checkWord = useCallback(_debounce(async (word: string) => {
+    const checkWordCallback = useCallback(async (word: string) => {
         // if no characters at all
         if (!word) {
             setExists(null);
@@ -25,24 +24,27 @@ export const useDictionaryCheck = (minWordLength: number) => {
         // prevent calling api again on same value
         if (lastChecked && word === lastChecked.val) {
             setExists(lastChecked.exists);
+            return;
         }
-        else {
-            // for loader if needed
-            setIsChecking(true);
 
-            fetch(`${apiUrl}/${word}`)
-                .then(res => {
-                    setExists(res.ok);
-                    setLastChecked({ val: word, exists: res.ok });
-                })
-                .catch((error) => {
-                    console.error('Error checking the word:', error);
-                    setExists(false);
-                    setLastChecked({ val: word, exists: false });
-                })
-                .finally(() => setIsChecking(false));
-        }
-    }, 300), [lastChecked, apiUrl, minWordLength]);
+        // for loader if needed
+        setIsChecking(true);
+
+        fetch(`${apiUrl}/${word}`)
+            .then(res => {
+                setExists(res.ok);
+                setLastChecked({ val: word, exists: res.ok });
+            })
+            .catch((error) => {
+                console.error('Error checking the word:', error);
+                setExists(false);
+                setLastChecked({ val: word, exists: false });
+            })
+            .finally(() => setIsChecking(false));
+    }, [lastChecked, apiUrl, minWordLength]);
+
+    // use debounce for keypress delay
+    const checkWord = useDebounce(checkWordCallback, 300);
 
     return {
         isChecking,
