@@ -3,6 +3,7 @@ import Keyboard from "../Keyboard/Keyboard";
 import SquareInput from "../SquareInput/SquareInput";
 import { useActionListener } from "../../hooks/useActionListener";
 import { useDictionaryCheck } from "../../hooks/useDictionaryCheck";
+import styles from './App.module.css';
 
 const App: React.FC = () => {
     const [input, setInput] = useState<string[]>([]); 
@@ -67,9 +68,11 @@ const App: React.FC = () => {
         <div className="container">
             {/* Input */}
             <SquareInput length={inputLength} input={input} hasError={exists === null ? null : !exists} />
-            
+
             {/* Keyboard */}
-            <Keyboard onKeyPress={handleKeyPress} />
+            <div className={styles.keyboardContainer}>
+                <Keyboard onKeyPress={handleKeyPress} />
+            </div>
         </div>
     );
 };

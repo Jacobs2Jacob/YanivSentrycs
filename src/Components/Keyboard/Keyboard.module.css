@@ -1,7 +1,6 @@
 
 .keyboardContainer {
     display: block;
-    margin-top: 100px;
 }
 
 .keyboardRow {
@@ -34,4 +33,11 @@
 
 .backspaceKey {
     border-radius: 3px;
+}
+
+@media only screen and (max-width: 480px) {
+    .keyButton {
+        font-size: 9px;
+        height: 30px;
+    }
 }
