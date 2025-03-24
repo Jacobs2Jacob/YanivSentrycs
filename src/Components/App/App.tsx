@@ -45,12 +45,13 @@ const App: React.FC = () => {
     // event emitted
     const handleKeyPress = async (key: string) => {
         if (key === 'BACKSPACE') {
-            // no need to check the length here, pop handles empty values
-            setInput((prev) => {
-                const cloned = [...prev];
-                cloned.pop();
-                return cloned;
-            });
+            if (input.length > 0) {
+                setInput((prev) => {
+                    const cloned = [...prev];
+                    cloned.pop();
+                    return cloned;
+                });
+            }
         }
         else if (key === 'ENTER') {
             await checkWord(input.join(''));
