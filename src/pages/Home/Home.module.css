@@ -1,9 +1,4 @@
-
-.container {
-    display: "flex"; 
-    justify-content: center;
-}
-
+ 
 .keyboardContainer {
     margin-top: 100px;
 }
