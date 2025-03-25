@@ -23,7 +23,7 @@ export const useDictionaryCheck = (minWordLength: number) => {
         }
         else
         {
-        // for loader if needed
+            // for loader if needed
             setIsChecking(true);
 
             fetch(`${apiUrl}/${word}`)
