@@ -7,7 +7,8 @@ const App: React.FC = () => {
             <Routes>
                 {/* Redirect to HomePage */}
                 <Route path="/" element={<Home />} />
-
+                 
+                {/* Fallback */}
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </Router>
