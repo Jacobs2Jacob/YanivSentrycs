@@ -1,11 +1,11 @@
 ﻿import { useEffect, useState } from "react"; 
-import Keyboard from "../Keyboard/Keyboard"; 
-import SquareInput from "../SquareInput/SquareInput";
+import Keyboard from "../../Components/Keyboard/Keyboard"; 
+import SquareInput from "../../Components/SquareInput/SquareInput";
 import { useActionListener } from "../../hooks/useActionListener";
 import { useDictionaryCheck } from "../../hooks/useDictionaryCheck";
-import styles from './App.module.css';
+import styles from './Home.module.css';
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
     const [input, setInput] = useState<string[]>([]); 
     const inputLength = 5;
     const { checkWord, exists } = useDictionaryCheck(inputLength);
@@ -78,4 +78,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default Home;
