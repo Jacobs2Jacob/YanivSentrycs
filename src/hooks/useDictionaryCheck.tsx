@@ -6,7 +6,7 @@ export const useDictionaryCheck = (minWordLength: number) => {
     const apiUrl = import.meta.env.VITE_DICTIONARY_API_URL;
     const [isChecking, setIsChecking] = useState(false);
     const [exists, setExists] = useState<boolean | null>(null);
-    const [lastChecked, setLastChecked] = useState<{ val: string, exists: boolean }>(null!);
+    const [lastChecked, setLastChecked] = useState<{ val: string, exists: boolean } | null>(null);
 
     const checkWordCallback = useCallback(async (word: string) => {
         // if no characters at all
