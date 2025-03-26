@@ -2,7 +2,7 @@ import { useRef, useEffect, useCallback } from 'react';
 
 const useDebounce = <T extends (...args: any[]) => void>(fn: T, delay: number) => {
 
-    const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null!);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout | null>>(null);
 
     const debounced = useCallback((...args: Parameters<T>) => {
 
